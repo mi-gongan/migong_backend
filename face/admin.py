@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import test
+from .models import faceModel
 
 # Register your models here.
 
-admin.site.register(test)
+admin.site.register(faceModel)

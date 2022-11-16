@@ -10,32 +10,27 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-from pathlib import Path
-import environ
 import os
-
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, True)
-)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # Set the project base directory
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Take environment variables from .env file
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+# SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = "django-insecure-v6%aiyr-5ooybxago7*dh8*o+(gzj!6n$q+kk@fz@rli7b5er3"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = os.environ['DEBUG']
+DEBUG = 'true'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "http://localhost:3000/",
+    "127.0.0.1"
+]
 
 
 # Application definition
@@ -55,8 +50,9 @@ INSTALLED_APPS = [
     'boto3',
     'numpy',
     'pandas',
+    'corsheaders',
 
-    'face'
+    'face.apps.FaceConfig'
 ]
 
 REST_FRAMEWORK = {
@@ -64,6 +60,7 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -167,3 +164,7 @@ AWS_S3_OBJECT_PARAMETERS = {
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# CORS 관련 추가
+CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000', 'http://localhost:3000']
+CORS_ALLOW_CREDENTIALS = True

@@ -4,5 +4,5 @@ from .models import *
 
 class PhotoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = test
+        model = faceModel
         fields = ('__all__')

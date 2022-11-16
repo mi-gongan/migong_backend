@@ -115,4 +115,4 @@ class Face:
                 # 가로세로비율 구하기
                 keywords.append(face_hor_ver_ratio(lm_point))
 
-                print(keywords)
+                return keywords
