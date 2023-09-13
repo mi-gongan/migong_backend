@@ -61,7 +61,7 @@ class Face:
     def __init__(self):
         self.face_det = dlib.get_frontal_face_detector()
         self.landmark_model = dlib.shape_predictor(
-            settings.BASE_DIR+"/static/face/shape_predictor_68_face_landmarks.dat")
+            settings.BASE_DIR+"/static/shape_predictor_68_face_landmarks.dat")
 
     def calculate(self, imgLink):
         # 사진 넣었을 때 각 부위별 특징 도출

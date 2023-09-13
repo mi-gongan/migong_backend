@@ -9,8 +9,6 @@ from .services import Face
 
 class Image(APIView):
     def post(self, request):
-        # res = request.FILES['photo'].read()
-        # res = request.FILES['photo']
         serializers = PhotoSerializer(data=request.data)
         if serializers.is_valid():
             serializers.save()
