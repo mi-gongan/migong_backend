@@ -107,12 +107,12 @@ class Face:
                 keywords = []
 
                 # 광대크기 구하기
-                keywords.append(cheek_size(lm_point))
+                keywords.append({"cheek":cheek_size(lm_point)})
 
                 # 옆턱크기 구하기
-                keywords.append(jaw_size(lm_point))
+                keywords.append({"jaw":jaw_size(lm_point)})
 
                 # 가로세로비율 구하기
-                keywords.append(face_hor_ver_ratio(lm_point))
+                keywords.append({"hor_ver_ratio":face_hor_ver_ratio(lm_point)})
 
                 return keywords
