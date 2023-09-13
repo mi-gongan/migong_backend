@@ -28,6 +28,14 @@ def cheek_size(array):
     cheek_size = max(cheek_size1, cheek_size2, cheek_size3, cheek_size4)
     return cheek_size
 
+# 광대크기 비율 구하는 함수
+def cheek_percentage(size):
+    if size < 8:
+        return 25*size/4
+    elif size < 13:
+        return 10*(size-3)
+    else:
+        return 100
 
 # 턱크기 구하는 함수
 def jaw_size(array):
@@ -46,6 +54,15 @@ def jaw_size(array):
     jaw_size = max(jaw_size1, jaw_size2, jaw_size3, jaw_size4)
     return jaw_size
 
+# 턱크기 비율 구하는 함수
+def jaw_percentage(size):
+    if size < 3:
+        return 50*size/3
+    elif size < 11:
+        return 25*size/4+125/4
+    else:
+        return 100
+
 
 # 가로 세로 비율 구하기 함수
 def face_hor_ver_ratio(array):
@@ -54,6 +71,15 @@ def face_hor_ver_ratio(array):
     vertical_dist = eyebrow_middle[1]
     face_hor_ver_ratio = vertical_dist/horizontal_dist
     return face_hor_ver_ratio
+
+# 가로 세로 비율 비율 구하기 함수
+def face_hor_ver_percentage(ratio):
+    if ratio < 0.9:
+        return 500*ratio/9
+    elif ratio < 1.1:
+        return 25*(ratio-0.7)
+    else:
+        return 100
 
 
 class Face:
@@ -106,13 +132,13 @@ class Face:
                 # 키워드 담을 배열
                 keywords = []
 
-                # 광대크기 구하기
-                keywords.append({"cheek":cheek_size(lm_point)})
+                # 광대 백분율 구하기
+                keywords.append({"cheek":cheek_percentage(cheek_size(lm_point))})
 
-                # 옆턱크기 구하기
-                keywords.append({"jaw":jaw_size(lm_point)})
+                # 옆턱 백분율 구하기
+                keywords.append({"jaw":jaw_percentage(jaw_size(lm_point))})
 
-                # 가로세로비율 구하기
-                keywords.append({"hor_ver_ratio":face_hor_ver_ratio(lm_point)})
+                # 가로세로 백분율 구하기
+                keywords.append({"hor_ver_ratio":face_hor_ver_percentage(face_hor_ver_ratio(lm_point))})
 
                 return keywords
