@@ -35,8 +35,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = 'true'
 
 ALLOWED_HOSTS = [
-    "http://localhost:3000/",
-    "127.0.0.1"
+    "*"
 ]
 
 
